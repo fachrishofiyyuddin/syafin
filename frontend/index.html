@@ -6,6 +6,7 @@
   <title>SyaFin by Bank Jateng Syariah</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet" />
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
     :root {
       --primary: #01356a;
@@ -31,19 +32,16 @@
 </head>
 <body class="bg-white text-gray-900">
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
-    <div class="container mx-auto flex justify-between items-center py-5 px-6 md:px-12">
-      <a href="#" class="text-[var(--primary)] font-extrabold text-2xl tracking-wide flex items-center gap-2">
-        <!-- Icon Home -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75v9a2.25 2.25 0 01-2.25 2.25h-13.5A2.25 2.25 0 013 18.75v-9z" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 22.5v-6h6v6" />
-        </svg>
-        SyaFin
-      </a>
-      <ul class="hidden md:flex space-x-12 text-gray-700 font-semibold">
-        <li>
+ <!-- Navbar -->
+<nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+  <div class="container mx-auto flex justify-between items-center py-5 px-6 md:px-12">
+    <!-- Logo -->
+    <a href="#" class="text-[var(--primary)] font-extrabold text-2xl tracking-wide flex items-center gap-2">
+      <img src="/frontend/assets/img/syafin-logo.png" alt="SyaFin" class="h-14 w-auto">
+    </a>
+      <!-- Menu -->
+      <ul class="hidden md:flex space-x-12 text-gray-700 font-semibold items-center">
+        <li class="flex items-center">
           <a href="#features" class="hover:text-[var(--primary)] transition flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L4.5 12.75 9.75 8.5" />
@@ -52,7 +50,7 @@
             Fitur
           </a>
         </li>
-        <li>
+        <li class="flex items-center">
           <a href="#tracking" class="hover:text-[var(--primary)] transition flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 16l4-4-4-4" />
@@ -61,7 +59,7 @@
             Tracking
           </a>
         </li>
-        <li>
+        <li class="flex items-center">
           <a href="#chat" class="hover:text-[var(--primary)] transition flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.96 9.96 0 01-4.276-1.028L3 20l1.3-4.867A7.964 7.964 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -69,7 +67,7 @@
             Konsultasi
           </a>
         </li>
-        <li>
+        <li class="flex items-center">
           <a href="#education" class="hover:text-[var(--primary)] transition flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -78,8 +76,8 @@
             Edukasi & FAQ
           </a>
         </li>
-        <li>
-          <a href="#form" class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-6 py-2 hover:opacity-90 transition font-semibold flex items-center gap-2">
+        <li class="flex items-center">
+          <a href="#form" class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-5 py-[6px] hover:opacity-90 transition font-semibold flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
             </svg>
@@ -87,7 +85,8 @@
           </a>
         </li>
       </ul>
-
+    </div>
+  </nav>
       <!-- Mobile Menu Button -->
       <button id="menu-btn" class="md:hidden text-[var(--primary)] focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -371,6 +370,50 @@
   // Initial state
   updateSlider();
   </script>
+
+<!-- Floating Chat CS -->
+<div x-data="{ open: false, showBubble: true }" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+
+  <!-- Bubble Text -->
+  <div x-show="showBubble" x-transition.duration.500ms
+    class="bg-green-500 text-white px-4 py-2 rounded-full shadow mb-2 text-sm animate-bounce">
+    Hai! Butuh Bantuan?
+  </div>
+
+  <!-- Chat Icon Button -->
+  <button @click="open = !open; showBubble = false" class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 focus:outline-none transition animate-bounce">
+    <!-- WhatsApp Icon -->
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M20.52 3.48A11.87 11.87 0 0012 0C5.37 0 0 5.37 0 12a11.91 11.91 0 001.68 6.07L0 24l6.22-1.62A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12a11.87 11.87 0 00-3.48-8.52zm-8.52 19a9.77 9.77 0 01-5-1.38l-.36-.21-3.7.97.99-3.61-.24-.37A9.81 9.81 0 1120.77 12a9.77 9.77 0 01-8.77 10.48zM17 15.2c-.29-.15-1.71-.84-1.97-.94s-.46-.15-.65.15-.75.94-.92 1.13-.34.23-.63.08a7.96 7.96 0 01-2.35-1.45 8.78 8.78 0 01-1.63-2c-.17-.3 0-.46.12-.6s.3-.34.46-.51a2.01 2.01 0 00.3-.5.55.55 0 000-.52c-.07-.15-.65-1.55-.9-2.13s-.48-.47-.66-.48h-.56a1.08 1.08 0 00-.78.37A3.28 3.28 0 004 8.83a5.63 5.63 0 001 3.7 12.66 12.66 0 004.72 4.76A13.3 13.3 0 0016 19c.81 0 1.3-.08 1.58-.14a3.3 3.3 0 001.55-1.13c.19-.28.19-.52.14-.57z" />
+    </svg>
+  </button>
+
+  <!-- Chat Popup -->
+  <div x-show="open" @click.away="open = false"
+    class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-64 mt-4">
+    <h3 class="text-lg font-semibold mb-2">Butuh Bantuan?</h3>
+    <p class="text-sm mb-4 text-gray-600">Chat CS kami di WhatsApp, kami siap membantu Anda!</p>
+    <a href="https://wa.me/6281234567890?text=Halo%20CS%2C%20saya%20butuh%20bantuan."
+      target="_blank"
+      class="block text-center bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
+      Chat via WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<!-- Optional: Notifikasi Suara -->
+<audio id="ping-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3"></audio>
+<script>
+  // Play ping sound 2 sec after page load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('ping-sound').play();
+    }, 2000);
+  });
+</script>
+
 
 </body>
 </html>

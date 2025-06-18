@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Member</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      --primary: #01356a;
+      --primary-light: #0b4a8f;
+    }
+    .bg-primary { background-color: var(--primary); }
+    .bg-primary-light { background-color: var(--primary-light); }
+    .text-primary { color: var(--primary); }
+  </style>
+</head>
+<body class="bg-gray-100 h-full flex">
+
+  <!-- Sidebar (desktop only) -->
+  <aside class="bg-primary-light text-white w-64 min-h-screen hidden md:flex flex-col">
+    <div class="p-6">
+      <img src="/frontend/assets/img/syafin-white.png" alt="Logo" class="w-40 mx-auto">
+    </div>
+    <nav class="flex-1 px-4">
+      <a href="#" class="block py-2 px-3 rounded hover:bg-primary">Home</a>
+      <a href="#" class="block py-2 px-3 rounded hover:bg-primary">Rekening Tabungan</a>
+      <a href="#" class="block py-2 px-3 rounded hover:bg-primary">Ajukan Pembiayaan</a>
+      <a href="#" class="block py-2 px-3 rounded hover:bg-primary">Deposito</a>
+      <a href="#" class="block py-2 px-3 rounded hover:bg-primary">Informasi Syariah</a>
+    </nav>
+    <div class="p-4 text-sm text-center border-t border-white/30">© 2025 Bank Syariah</div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex flex-col flex-1">
+
+    <header class="bg-primary text-white px-4 py-4 flex justify-between items-center shadow">
+    <div class="flex items-center gap-4">
+        <h1 class="text-lg md:text-xl font-semibold" id="page-title">Dashboard Member</h1>
+    </div>
+    <!-- Profil Menu -->
+    <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" class="focus:outline-none">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A4 4 0 017 16h10a4 4 0 011.879.496M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        </button>
+        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded shadow z-50">
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Pengaturan</a>
+        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+        </div>
+    </div>
+    </header>
+
+
+    <!-- Container Cards + Banner -->
+    <div class="max-w-7xl mx-auto px-4">
+
+        <!-- Cards -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
+        <!-- Buka Rekening 1 -->
+        <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition">
+            <img src="/frontend/assets/icon/bank.svg" alt="Icon" class="w-12 h-12 text-primary mb-4">
+            <h2 class="text-lg font-semibold mb-2">Rekening Tabungan</h2>
+            <p class="text-gray-600 mb-4">Buka rekening tabungan dengan mudah dan cepat.</p>
+            <a href="#" class="mt-auto bg-primary text-white px-4 py-2 rounded hover:bg-primary-light">Buka Rekening</a>
+        </div>
+        
+        <!-- Mengajukan Pembiayaan -->
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition">
+       <img src="/frontend/assets/icon/submit.svg" alt="Icon" class="w-12 h-12 text-primary mb-4">
+        <h2 class="text-lg font-semibold mb-2">Ajukan Pembiayaan</h2>
+        <p class="text-gray-600 mb-4">Dapatkan pembiayaan sesuai kebutuhan Anda.</p>
+        <a href="#" class="mt-auto bg-primary text-white px-4 py-2 rounded hover:bg-primary-light">Ajukan Sekarang</a>
+      </div>
+
+      <!-- Pembukaan Deposito -->
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition">
+        <img src="/frontend/assets/icon/depo.svg" alt="Icon" class="w-12 h-12 text-primary mb-4">
+        <h2 class="text-lg font-semibold mb-2">Deposito</h2>
+        <p class="text-gray-600 mb-4">Nikmati bunga kompetitif dengan deposito syariah.</p>
+        <a href="#" class="mt-auto bg-primary text-white px-4 py-2 rounded hover:bg-primary-light">Buka Deposito</a>
+      </div>
+
+      <!-- Informasi Perbankan Syariah -->
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition">
+        <img src="/frontend/assets/icon/info.svg" alt="Icon" class="w-12 h-12 text-primary mb-4">
+        <h2 class="text-lg font-semibold mb-2">Informasi Syariah</h2>
+        <p class="text-gray-600 mb-4">Pelajari prinsip dan produk perbankan syariah.</p>
+        <a href="#" class="mt-auto bg-primary text-white px-4 py-2 rounded hover:bg-primary-light">Lihat Informasi</a>
+      </div>
+
+      </main>
+
+      <!-- Banner Slider -->
+      <section x-data="{
+        active: 0,
+        slides: [
+          '/frontend/assets/img/promo-1.png',
+          '/frontend/assets/img/promo-2.png',
+          '/frontend/assets/img/promo-3.png',
+        ],
+        init() {
+          setInterval(() => {
+            this.active = (this.active + 1) % this.slides.length
+          }, 5000);
+        }
+      }" class="w-full overflow-hidden rounded-xl shadow mt-4">
+        <div class="relative w-full h-48 md:h-72">
+          <template x-for="(slide, index) in slides" :key="index">
+            <div x-show="active === index" x-transition class="absolute inset-0">
+              <img :src="slide" alt="Promo Banner" class="w-full h-full object-cover">
+            </div>
+          </template>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <!-- Floating Chat CS -->
+<div x-data="{ open: false, showBubble: true }" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+
+  <!-- Bubble Text -->
+  <div x-show="showBubble" x-transition.duration.500ms
+    class="bg-green-500 text-white px-4 py-2 rounded-full shadow mb-2 text-sm animate-bounce">
+    Hai! Butuh Bantuan?
+  </div>
+
+  <!-- Chat Icon Button -->
+  <button @click="open = !open; showBubble = false" class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 focus:outline-none transition animate-bounce">
+    <!-- WhatsApp Icon -->
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M20.52 3.48A11.87 11.87 0 0012 0C5.37 0 0 5.37 0 12a11.91 11.91 0 001.68 6.07L0 24l6.22-1.62A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12a11.87 11.87 0 00-3.48-8.52zm-8.52 19a9.77 9.77 0 01-5-1.38l-.36-.21-3.7.97.99-3.61-.24-.37A9.81 9.81 0 1120.77 12a9.77 9.77 0 01-8.77 10.48zM17 15.2c-.29-.15-1.71-.84-1.97-.94s-.46-.15-.65.15-.75.94-.92 1.13-.34.23-.63.08a7.96 7.96 0 01-2.35-1.45 8.78 8.78 0 01-1.63-2c-.17-.3 0-.46.12-.6s.3-.34.46-.51a2.01 2.01 0 00.3-.5.55.55 0 000-.52c-.07-.15-.65-1.55-.9-2.13s-.48-.47-.66-.48h-.56a1.08 1.08 0 00-.78.37A3.28 3.28 0 004 8.83a5.63 5.63 0 001 3.7 12.66 12.66 0 004.72 4.76A13.3 13.3 0 0016 19c.81 0 1.3-.08 1.58-.14a3.3 3.3 0 001.55-1.13c.19-.28.19-.52.14-.57z" />
+    </svg>
+  </button>
+
+  <!-- Chat Popup -->
+  <div x-show="open" @click.away="open = false"
+    class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-64 mt-4">
+    <h3 class="text-lg font-semibold mb-2">Butuh Bantuan?</h3>
+    <p class="text-sm mb-4 text-gray-600">Chat CS kami di WhatsApp, kami siap membantu Anda!</p>
+    <a href="https://wa.me/6281234567890?text=Halo%20CS%2C%20saya%20butuh%20bantuan."
+      target="_blank"
+      class="block text-center bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
+      Chat via WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<!-- Optional: Notifikasi Suara -->
+<audio id="ping-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3"></audio>
+<script>
+  // Play ping sound 2 sec after page load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('ping-sound').play();
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>
