@@ -7,6 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet" />
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Tambahkan link CSS Swiper di <head> -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
   <style>
     :root {
       --primary: #01356a;
@@ -27,6 +32,15 @@
       transform: translateY(0);
     }
 
+    @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-start infinite;
+  }
+
 
   </style>
 </head>
@@ -39,143 +53,166 @@
     <a href="#" class="text-[var(--primary)] font-extrabold text-2xl tracking-wide flex items-center gap-2">
       <img src="/frontend/assets/img/syafin-logo.png" alt="SyaFin" class="h-14 w-auto">
     </a>
-      <!-- Menu -->
-      <ul class="hidden md:flex space-x-12 text-gray-700 font-semibold items-center">
-        <li class="flex items-center">
-          <a href="#features" class="hover:text-[var(--primary)] transition flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L4.5 12.75 9.75 8.5" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 17L19.5 12.75 14.25 8.5" />
-            </svg>
-            Fitur
-          </a>
-        </li>
-        <li class="flex items-center">
-          <a href="#tracking" class="hover:text-[var(--primary)] transition flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16l4-4-4-4" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 12h14" />
-            </svg>
-            Tracking
-          </a>
-        </li>
-        <li class="flex items-center">
-          <a href="#chat" class="hover:text-[var(--primary)] transition flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.96 9.96 0 01-4.276-1.028L3 20l1.3-4.867A7.964 7.964 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            Konsultasi
-          </a>
-        </li>
-        <li class="flex items-center">
-          <a href="#education" class="hover:text-[var(--primary)] transition flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.84 5.942L12 21l-7-3.48a12.06 12.06 0 01.84-5.942L12 14z" />
-            </svg>
-            Edukasi & FAQ
-          </a>
-        </li>
-        <li class="flex items-center">
-          <a href="#form" class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-5 py-[6px] hover:opacity-90 transition font-semibold flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            Ajukan Sekarang
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-      <!-- Mobile Menu Button -->
-      <button id="menu-btn" class="md:hidden text-[var(--primary)] focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
-    </div>
 
-    <div id="mobile-menu" class="hidden bg-white/95 backdrop-blur-sm px-6 py-8 shadow-md md:hidden">
-      <ul class="space-y-6 text-gray-700 font-semibold">
-        <li>
-          <a href="#features" class="block hover:text-[var(--primary)] transition flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L4.5 12.75 9.75 8.5" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 17L19.5 12.75 14.25 8.5" />
-            </svg>
-            Fitur
-          </a>
-        </li>
-        <li>
-          <a href="#tracking" class="block hover:text-[var(--primary)] transition flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16l4-4-4-4" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 12h14" />
-            </svg>
-            Tracking
-          </a>
-        </li>
-        <li>
-          <a href="#chat" class="block hover:text-[var(--primary)] transition flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.96 9.96 0 01-4.276-1.028L3 20l1.3-4.867A7.964 7.964 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            Konsultasi
-          </a>
-        </li>
-        <li>
-          <a href="#education" class="block hover:text-[var(--primary)] transition flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.84 5.942L12 21l-7-3.48a12.06 12.06 0 01.84-5.942L12 14z" />
-            </svg>
-            Edukasi & FAQ
-          </a>
-        </li>
-        <li>
-          <a href="#form" class="block bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-6 py-3 text-center font-semibold hover:opacity-90 transition flex items-center justify-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            Ajukan Sekarang
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Desktop Menu (dengan icon) -->
+<ul class="hidden md:flex space-x-12 text-gray-700 font-semibold items-center">
+  <li>
+    <a href="#features" class="flex items-center gap-2 hover:text-[var(--primary)] transition">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L4.5 12.75 9.75 8.5" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 17L19.5 12.75 14.25 8.5" />
+      </svg>
+      Fitur
+    </a>
+  </li>
+  <li>
+    <a href="#tracking" class="flex items-center gap-2 hover:text-[var(--primary)] transition">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16l4-4-4-4M7 12h14" />
+      </svg>
+      Tracking
+    </a>
+  </li>
+  <li>
+    <a href="#education" class="flex items-center gap-2 hover:text-[var(--primary)] transition">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.84 5.942L12 21l-7-3.48a12.06 12.06 0 01.84-5.942L12 14z" />
+      </svg>
+      Edukasi & FAQ
+    </a>
+  </li>
+  <li>
+   <a href="#form" class="flex items-center gap-2 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-5 py-[6px] hover:opacity-90 transition font-semibold">
+  <!-- Ikon petir -->
+  <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+  </svg>
+  Ajukan Sekarang
+</a>
 
-  <!-- Hero Section -->
-  <section class="pt-24 pb-32 md:pt-32 md:pb-40 bg-gradient-to-b from-[var(--primary)] to-[var(--primary-light)] text-white">
-    <div class="container mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center gap-16 fade-up">
-        
-        <div class="md:w-1/2 space-y-8">
-        <h1 class="text-5xl md:text-6xl font-extralight leading-tight tracking-tight drop-shadow-lg">Keuangan Syariah<br /><span class="font-semibold">Mudah dan Transparan</span></h1>
-        <p class="text-lg md:text-xl max-w-xl opacity-90 drop-shadow-md">Membuka rekening, pengajuan pembiayaan, dan deposito secara online. Pantau status pengajuan real-time, dan konsultasi langsung kapan saja.</p>
-        <a href="#form" class="inline-block mt-4 bg-white text-[var(--primary)] font-semibold rounded-full px-10 py-4 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300">
-            Ajukan Sekarang
+  </li>
+</ul>
+
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="md:hidden text-[var(--primary)] focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm px-6 py-8 shadow-md">
+    <ul class="space-y-6 text-gray-700 font-semibold">
+      <li>
+        <a href="#features" class="flex items-center gap-2 hover:text-[var(--primary)] transition">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L4.5 12.75 9.75 8.5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 17L19.5 12.75 14.25 8.5" />
+          </svg>
+          Fitur
         </a>
-        </div>
-        
-        <div class="md:w-1/2 relative overflow-hidden rounded-3xl shadow-2xl h-[360px] md:h-[440px]">
-            <div id="hero-slider" class="flex transition-transform duration-700 ease-in-out w-full h-full">
-                <img src="assets/img/1.jpg" class="w-full h-full object-cover flex-shrink-0" />
-                <img src="assets/img/2.jpg" class="w-full h-full object-cover flex-shrink-0" />
-                <img src="assets/img/3.jpg" class="w-full h-full object-cover flex-shrink-0" />
-            </div>
+      </li>
+      <li>
+        <a href="#tracking" class="flex items-center gap-2 hover:text-[var(--primary)] transition">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16l4-4-4-4M7 12h14" />
+          </svg>
+          Tracking
+        </a>
+      </li>
+      <li>
+        <a href="#education" class="flex items-center gap-2 hover:text-[var(--primary)] transition">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.84 5.942L12 21l-7-3.48a12.06 12.06 0 01.84-5.942L12 14z" />
+          </svg>
+          Edukasi & FAQ
+        </a>
+      </li>
+      <li>
+       <a href="#form" class="flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-6 py-3 text-center font-semibold hover:opacity-90 transition">
+  <!-- Ikon petir (heroicon-style) -->
+  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+  </svg>
+  Ajukan Sekarang
+</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-            <!-- Dots -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-                <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-index="0"></button>
-                <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-index="1"></button>
-                <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-index="2"></button>
-            </div>
-        </div>
+
+
+<section class="pt-32 pb-32 md:pt-40 md:pb-40 bg-gradient-to-b from-[var(--primary)] to-[var(--primary-light)] text-white">
+  <div class="container mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center gap-16 fade-up">
+    
+    <div class="md:w-1/2 space-y-8">
+      <h1 class="text-5xl md:text-6xl font-extralight leading-tight tracking-tight drop-shadow-lg">
+        Keuangan Syariah<br />
+        <span class="font-semibold">
+          <span id="typing-text"></span><span id="cursor" class="inline-block animate-blink">|</span>
+        </span>
+      </h1>
+      
+      <!-- Subtitle with icon and animation -->
+      <p class="text-xl font-semibold uppercase tracking-wide text-white/90 flex items-center gap-3">
+        Solusi 
+        <span 
+          class="bg-yellow-400 text-black px-4 py-1 rounded-md shadow-lg font-bold inline-flex items-center gap-2 animate-pulse"
+          title="Peminjaman uang online cepat dan aman"
+        >
+          <!-- Icon (using emoji or SVG) -->
+          💸 PEMINJAMAN ONLINE
+        </span> 
+        Mudah & Cepat
+      </p>
+
+      <!-- Penjelasan lebih spesifik dan persuasif -->
+      <p class="text-lg md:text-xl max-w-xl opacity-95 drop-shadow-md">
+        Ajukan pinjaman uang secara <span class="font-semibold underline decoration-yellow-400">online</span>, tanpa ribet dan proses cepat. 
+        Pantau status pengajuan secara real-time, konsultasi kapan saja dengan tim kami.
+      </p>
+      
+      <a href="#form"
+   class="inline-flex items-center gap-3 mt-6 bg-white text-[var(--primary)] font-semibold rounded-full px-12 py-5 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300">
+  
+  <!-- Ikon Uang Petir -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M11 0h3l-4 9h4l-6 11v-9H5l6-11z"/>
+  </svg>
+
+  Ajukan Sekarang
+</a>
 
 
     </div>
-  </section>
+
+    <div class="md:w-1/2 relative overflow-hidden rounded-3xl shadow-2xl h-[360px] md:h-[440px] hidden md:block">
+  <div id="hero-slider" class="flex transition-transform duration-700 ease-in-out w-full h-full">
+    <img src="assets/img/1.jpg" class="w-full h-full object-cover flex-shrink-0" />
+    <img src="assets/img/2.jpg" class="w-full h-full object-cover flex-shrink-0" />
+    <img src="assets/img/3.jpg" class="w-full h-full object-cover flex-shrink-0" />
+  </div>
+
+  <!-- Dots -->
+  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+    <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-index="0"></button>
+    <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-index="1"></button>
+    <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-index="2"></button>
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+
 
 
   <!-- Features Section -->
@@ -188,7 +225,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-3-3v6m-7 3a7 7 0 1114 0H5z" />
         </svg>
         <h3 class="text-xl font-semibold mb-2">Pengajuan Mudah</h3>
-        <p class="text-gray-600">Ajukan pembiayaan dan deposito secara online dengan proses cepat dan mudah.</p>
+        <p class="text-gray-600">Ajukan peminjamanan secara online dengan proses cepat dan mudah.</p>
       </div>
 
       <div class="bg-white rounded-3xl shadow-lg p-10 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300 hover:scale-[1.03] cursor-pointer">
@@ -211,102 +248,474 @@
     </div>
   </section>
 
-  <!-- Tracking Section -->
-  <section id="tracking" class="bg-gray-50 py-20 fade-up">
-    <div class="container mx-auto px-6 md:px-12 text-center max-w-3xl mx-auto">
-      <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-8">Pantau Pengajuan Anda</h2>
-      <p class="mb-8 text-gray-700">Masukkan nomor pengajuan untuk melihat status terbaru pengajuan pembiayaan atau deposito Anda.</p>
-      <form class="flex max-w-md mx-auto gap-3">
-        <input type="text" placeholder="Nomor Pengajuan" class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" />
-        <button type="submit" class="bg-[var(--primary)] text-white rounded-lg px-6 py-3 font-semibold hover:bg-[var(--primary-light)] transition">Lacak</button>
-      </form>
-    </div>
-  </section>
+ <!-- Tracking Section -->
+ <section id="tracking" class="relative bg-gray-50 py-20 fade-up min-h-[600px]">
+  <!-- Background Image Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img src="/frontend/assets/img/bg-tracking.jpg"
+         alt="Background Tracking"
+         class="w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-white/35"></div>
+  </div>
 
-  <!-- Chat Konsultasi Section -->
-  <section id="chat" class="container mx-auto px-6 md:px-12 py-20 fade-up">
-    <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-12 text-center">Konsultasi dengan Kami</h2>
-    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-12">
-      <form class="space-y-6">
-        <div>
-          <label for="name" class="block mb-2 font-semibold text-gray-700">Nama</label>
-          <input id="name" type="text" placeholder="Nama Anda" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" />
-        </div>
-        <div>
-          <label for="email" class="block mb-2 font-semibold text-gray-700">Email</label>
-          <input id="email" type="email" placeholder="Email Anda" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" />
-        </div>
-        <div>
-          <label for="message" class="block mb-2 font-semibold text-gray-700">Pesan</label>
-          <textarea id="message" rows="5" placeholder="Tulis pesan Anda..." class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"></textarea>
-        </div>
-        <button type="submit" class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-8 py-4 font-semibold hover:opacity-90 transition">
-          Kirim Pesan
-        </button>
-      </form>
-    </div>
-  </section>
+  <div class="relative z-10 container mx-auto px-6 md:px-12 text-center max-w-3xl mx-auto">
+    <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-8">Pantau Pengajuan Anda</h2>
+    <p class="mb-8 text-gray-700">Masukkan nomor pengajuan untuk melihat status terbaru pengajuan peminjaman Anda.</p>
+
+    <form id="trackingForm" class="flex max-w-md mx-auto gap-3 mb-12">
+      <input type="text" name="trackingNumber" placeholder="Nomor Pengajuan"
+             class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" />
+      <button type="submit"
+              class="bg-[var(--primary)] text-white rounded-lg px-6 py-3 font-semibold hover:bg-[var(--primary-light)] transition flex items-center gap-2 justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+        </svg>
+        Lacak
+      </button>
+    </form>
+
+ <!-- Spinner loading -->
+<div id="loadingSpinner" class="flex items-center justify-center gap-4 mt-8 hidden">
+  <svg class="animate-spin h-7 w-7 text-[var(--primary)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+  </svg>
+  <span class="text-[var(--primary)] text-lg font-semibold">Sedang memuat...</span>
+</div>
+
+    <!-- Hasil Pencarian -->
+<div id="searchResults" class="max-w-4xl mx-auto text-left hidden">
+  <h3 class="text-2xl font-bold mb-6 text-[var(--primary)]">Hasil Pencarian</h3>
+  <div class="overflow-x-auto rounded-xl shadow-md border border-gray-200 bg-white">
+    <table class="min-w-full text-sm text-left">
+      <thead class="bg-[var(--primary)] text-white">
+        <tr>
+          <th class="px-6 py-4 font-semibold uppercase tracking-wide">Nomor</th>
+          <th class="px-6 py-4 font-semibold uppercase tracking-wide">Tanggal</th>
+          <th class="px-6 py-4 font-semibold uppercase tracking-wide">Status</th>
+          <th class="px-6 py-4 font-semibold uppercase tracking-wide">Keterangan</th>
+        </tr>
+      </thead>
+      <tbody id="resultsBody" class="divide-y divide-gray-200">
+        <!-- Baris hasil akan ditambahkan di sini oleh JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
 
   <!-- Edukasi & FAQ Section -->
-  <section id="education" class="bg-gray-50 py-20 fade-up">
-    <div class="container mx-auto px-6 md:px-12 max-w-5xl">
-      <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">Edukasi & FAQ</h2>
+<section id="education" class="bg-gray-50 py-20 fade-up">
+  <div class="container mx-auto px-6 md:px-12 max-w-5xl">
+    <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">Edukasi & FAQ</h2>
 
-      <div class="space-y-8">
+    <div class="space-y-8">
 
-        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
-          <summary class="font-semibold text-lg text-[var(--primary)]">Apa itu pembiayaan syariah?</summary>
-          <p class="mt-3 text-gray-700 leading-relaxed">Pembiayaan syariah adalah metode pembiayaan yang sesuai dengan prinsip-prinsip syariah Islam, tanpa bunga dan dengan keadilan bagi semua pihak.</p>
-        </details>
+      <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
+        <summary class="font-semibold text-lg text-[var(--primary)]">Apa itu peminjaman online?</summary>
+        <p class="mt-3 text-gray-700 leading-relaxed">Peminjaman online adalah proses pengajuan pinjaman dana yang dilakukan secara digital melalui platform atau aplikasi tanpa harus datang langsung ke kantor.</p>
+      </details>
 
-        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
-          <summary class="font-semibold text-lg text-[var(--primary)]">Bagaimana cara mengajukan deposito?</summary>
-          <p class="mt-3 text-gray-700 leading-relaxed">Anda dapat mengajukan deposito secara online melalui website kami dengan mengisi formulir pengajuan dan mengikuti instruksi yang diberikan.</p>
-        </details>
+      <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
+        <summary class="font-semibold text-lg text-[var(--primary)]">Bagaimana cara mengajukan peminjaman online?</summary>
+        <p class="mt-3 text-gray-700 leading-relaxed">Anda dapat mengajukan peminjaman online dengan mengisi formulir pengajuan di website atau aplikasi kami, kemudian mengikuti proses verifikasi dan persetujuan secara digital.</p>
+      </details>
 
-        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
-          <summary class="font-semibold text-lg text-[var(--primary)]">Apakah pengajuan bisa ditolak?</summary>
-          <p class="mt-3 text-gray-700 leading-relaxed">Ya, pengajuan dapat ditolak jika tidak memenuhi syarat dan ketentuan yang berlaku. Tim kami akan menghubungi Anda untuk informasi lebih lanjut.</p>
-        </details>
+      <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
+        <summary class="font-semibold text-lg text-[var(--primary)]">Berapa lama proses pencairan dana?</summary>
+        <p class="mt-3 text-gray-700 leading-relaxed">Proses pencairan dana biasanya memakan waktu antara 1 sampai 3 hari kerja setelah pengajuan disetujui dan dokumen lengkap.</p>
+      </details>
 
-      </div>
+      <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow">
+        <summary class="font-semibold text-lg text-[var(--primary)]">Apakah ada risiko peminjaman online?</summary>
+        <p class="mt-3 text-gray-700 leading-relaxed">Seperti pinjaman lainnya, peminjaman online memiliki risiko seperti keterlambatan pembayaran atau penipuan. Pastikan untuk memilih platform resmi dan membaca syarat ketentuan dengan teliti.</p>
+      </details>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Form Pengajuan -->
-  <section id="form" class="container mx-auto px-6 md:px-12 py-20 fade-up">
+
+<!-- Form Pengajuan Section -->
+<section id="form" class="relative py-20 fade-up min-h-[600px]">
+  <!-- Background Image Overlay -->
+  <div class="absolute inset-0 z-0">
+  <img src="/frontend/assets/img/bg-loan.jpg" alt="Background Form" class="w-full h-full object-cover object-center" />
+  <div class="absolute inset-0 bg-black/30"></div>  <!-- overlay gelap transparan -->
+</div>
+
+
+  <div class="relative z-10 container mx-auto px-6 md:px-12 max-w-3xl">
+    <div class="bg-white rounded-3xl shadow-lg p-12">
     <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-12 text-center">Ajukan Sekarang</h2>
-    <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-lg p-12">
       <form class="space-y-8">
         <div>
           <label for="fullName" class="block mb-2 font-semibold text-gray-700">Nama Lengkap</label>
-          <input id="fullName" type="text" placeholder="Nama lengkap Anda" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" required />
+          <input id="fullName" type="text" placeholder="Nama lengkap Anda"
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            required />
         </div>
         <div>
           <label for="emailForm" class="block mb-2 font-semibold text-gray-700">Email</label>
-          <input id="emailForm" type="email" placeholder="Email Anda" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" required />
+          <input id="emailForm" type="email" placeholder="Email Anda"
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            required />
         </div>
         <div>
           <label for="type" class="block mb-2 font-semibold text-gray-700">Jenis Pengajuan</label>
-          <select id="type" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" required>
+          <select id="type"
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            required>
             <option value="" disabled selected>Pilih jenis pengajuan</option>
-            <option value="pembiayaan">Pembiayaan</option>
-            <option value="deposito">Deposito</option>
+            <option value="pembiayaan">Peminjaman</option>
           </select>
         </div>
         <div>
           <label for="amount" class="block mb-2 font-semibold text-gray-700">Jumlah Dana (Rp)</label>
-          <input id="amount" type="number" placeholder="Contoh: 5000000" min="100000" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" required />
+          <input id="amount" type="number" placeholder="Contoh: 5000000" min="100000"
+            class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            required />
         </div>
-        <button type="submit" class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-10 py-4 font-semibold hover:opacity-90 transition">
-          Kirim Pengajuan
-        </button>
+        <button type="submit"
+  class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-10 py-4 font-semibold hover:opacity-90 transition w-full md:w-auto flex items-center justify-center">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14L21 3M21 3l-6 18-3-7-7-3 18-6z" />
+  </svg>
+
+  Kirim Pengajuan
+</button>
+
       </form>
     </div>
-  </section>
+  </div>
+</section>
+
+  <!-- Testimonial Section -->
+<section id="testimonials" class="bg-gray-100 py-20 fade-up">
+  <div class="container mx-auto px-6 md:px-12">
+    <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">
+      Apa Kata Mereka
+    </h2>
+
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+
+        <!-- Testimonial 1 -->
+        <div class="swiper-slide">
+          <div
+            class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-lg transition duration-300"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="https://i.pravatar.cc/100?img=3"
+                alt="Avatar"
+                class="w-14 h-14 rounded-full border-2 border-[var(--primary)]"
+              />
+              <div>
+                <p class="font-semibold text-lg text-[var(--primary)]">
+                  Aulia R.
+                </p>
+                <p class="text-sm text-gray-500">Pengusaha UMKM</p>
+              </div>
+            </div>
+            <div class="flex text-yellow-400 mb-3">
+              <!-- 5 stars -->
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+            </div>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              "Prosesnya cepat dan saya bisa lacak statusnya langsung dari
+              rumah. SyaFin benar-benar membantu usaha saya."
+            </p>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="swiper-slide">
+          <div
+            class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-lg transition duration-300"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="https://i.pravatar.cc/100?img=5"
+                alt="Avatar"
+                class="w-14 h-14 rounded-full border-2 border-[var(--primary)]"
+              />
+              <div>
+                <p class="font-semibold text-lg text-[var(--primary)]">
+                  Rizky F.
+                </p>
+                <p class="text-sm text-gray-500">Karyawan Swasta</p>
+              </div>
+            </div>
+            <div class="flex text-yellow-400 mb-3">
+              <!-- 5 stars -->
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+            </div>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              "Pengajuan pembiayaan tanpa ribet, transparan, dan sesuai prinsip
+              syariah. Sangat puas dengan layanan SyaFin."
+            </p>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="swiper-slide">
+          <div
+            class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-lg transition duration-300"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="https://i.pravatar.cc/100?img=9"
+                alt="Avatar"
+                class="w-14 h-14 rounded-full border-2 border-[var(--primary)]"
+              />
+              <div>
+                <p class="font-semibold text-lg text-[var(--primary)]">Dewi M.</p>
+                <p class="text-sm text-gray-500">Freelancer</p>
+              </div>
+            </div>
+            <div class="flex mb-3">
+              <!-- 4 stars filled -->
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <!-- 1 star gray -->
+              <svg
+                class="w-5 h-5 fill-current text-gray-300"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+            </div>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              "Saya suka fitur konsultasi online-nya! CS sangat membantu dan
+              responsif. Recomended banget."
+            </p>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="swiper-slide">
+          <div
+            class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-lg transition duration-300"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="https://i.pravatar.cc/100?img=9"
+                alt="Avatar"
+                class="w-14 h-14 rounded-full border-2 border-[var(--primary)]"
+              />
+              <div>
+                <p class="font-semibold text-lg text-[var(--primary)]">Dewi M.</p>
+                <p class="text-sm text-gray-500">Freelancer</p>
+              </div>
+            </div>
+            <div class="flex mb-3">
+              <!-- 4 stars filled -->
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <svg
+                class="w-5 h-5 fill-current text-yellow-400"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+              <!-- 1 star gray -->
+              <svg
+                class="w-5 h-5 fill-current text-gray-300"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 15l-5.878 3.09L5.64 12.545.76 8.91l6.093-.884L10 2.5l3.147 5.526 6.093.884-4.88 3.636 1.518 5.545z"
+                />
+              </svg>
+            </div>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              "Saya suka fitur konsultasi online-nya! CS sangat membantu dan
+              responsif. Recomended banget."
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation buttons -->
+      <div
+        class="swiper-button-next text-[var(--primary)] hover:text-[var(--primary-dark)]"
+      ></div>
+      <div
+        class="swiper-button-prev text-[var(--primary)] hover:text-[var(--primary-dark)]"
+      ></div>
+
+      <!-- Pagination -->
+      <div class="swiper-pagination mt-8"></div>
+    </div>
+  </div>
+</section>
+
+
 
   <!-- Footer -->
-  <footer class="bg-[var(--primary)] text-white py-12 mt-20">
+  <footer class="bg-[var(--primary)] text-white py-12">
     <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center">
       <p>&copy; 2025 SyaFin by Bank Jateng Syariah. Semua hak cipta dilindungi.</p>
       <div class="space-x-6 mt-6 md:mt-0 flex items-center">
@@ -371,39 +780,65 @@
   updateSlider();
   </script>
 
-<!-- Floating Chat CS -->
+<!-- Floating Chat CS with Human/Chatbot Info (Bubble tetap tampil) -->
 <div x-data="{ open: false, showBubble: true }" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
 
   <!-- Bubble Text -->
   <div x-show="showBubble" x-transition.duration.500ms
-    class="bg-green-500 text-white px-4 py-2 rounded-full shadow mb-2 text-sm animate-bounce">
-    Hai! Butuh Bantuan?
+       class="bg-green-500 text-white px-4 py-2 rounded-full shadow mb-2 text-sm animate-pulse cursor-pointer"
+       @click="open = true">
+    Butuh Konsultasi? Klik sini!
   </div>
 
-  <!-- Chat Icon Button -->
-  <button @click="open = !open; showBubble = false" class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 focus:outline-none transition animate-bounce">
-    <!-- WhatsApp Icon -->
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path
-        d="M20.52 3.48A11.87 11.87 0 0012 0C5.37 0 0 5.37 0 12a11.91 11.91 0 001.68 6.07L0 24l6.22-1.62A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12a11.87 11.87 0 00-3.48-8.52zm-8.52 19a9.77 9.77 0 01-5-1.38l-.36-.21-3.7.97.99-3.61-.24-.37A9.81 9.81 0 1120.77 12a9.77 9.77 0 01-8.77 10.48zM17 15.2c-.29-.15-1.71-.84-1.97-.94s-.46-.15-.65.15-.75.94-.92 1.13-.34.23-.63.08a7.96 7.96 0 01-2.35-1.45 8.78 8.78 0 01-1.63-2c-.17-.3 0-.46.12-.6s.3-.34.46-.51a2.01 2.01 0 00.3-.5.55.55 0 000-.52c-.07-.15-.65-1.55-.9-2.13s-.48-.47-.66-.48h-.56a1.08 1.08 0 00-.78.37A3.28 3.28 0 004 8.83a5.63 5.63 0 001 3.7 12.66 12.66 0 004.72 4.76A13.3 13.3 0 0016 19c.81 0 1.3-.08 1.58-.14a3.3 3.3 0 001.55-1.13c.19-.28.19-.52.14-.57z" />
-    </svg>
+  <!-- Chat Icon (Lottie) -->
+  <button @click="open = !open"
+          class="bg-white rounded-full shadow-lg hover:bg-gray-100 focus:outline-none transition">
+    <lottie-player
+      src="/frontend/assets/lottie/wa_animation.json"
+      background="transparent"
+      speed="1"
+      style="width: 60px; height: 60px;"
+      loop autoplay>
+    </lottie-player>
   </button>
 
   <!-- Chat Popup -->
   <div x-show="open" @click.away="open = false"
-    class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-64 mt-4">
-    <h3 class="text-lg font-semibold mb-2">Butuh Bantuan?</h3>
-    <p class="text-sm mb-4 text-gray-600">Chat CS kami di WhatsApp, kami siap membantu Anda!</p>
-    <a href="https://wa.me/6281234567890?text=Halo%20CS%2C%20saya%20butuh%20bantuan."
-      target="_blank"
-      class="block text-center bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
-      Chat via WhatsApp
-    </a>
-  </div>
+       class="bg-white border border-gray-300 shadow-lg rounded-lg p-4 w-72 mt-4 space-y-4">
+    <h3 class="text-lg font-semibold">Pilih Cara Chat</h3>
+    <p class="text-sm text-gray-600">Mau ngobrol langsung atau chatbot cepat?</p>
 
+    <div class="space-y-3">
+      <!-- WhatsApp (Manusia) -->
+      <a href="https://wa.me/6281234567890?text=Halo%20CS%2C%20saya%20butuh%20bantuan."
+         target="_blank"
+         class="flex items-center gap-2 bg-green-500 text-white py-2 px-3 rounded hover:bg-green-600 transition shadow">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.52 3.48A11.87 11.87 0 0012 0C5.37 0 0 5.37 0 12a11.91 11.91 0 001.68 6.07L0 24l6.22-1.62A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12a11.87 11.87 0 00-3.48-8.52z"/>
+        </svg>
+        Chat CS Langsung
+      </a>
+
+      <!-- Telegram (Chatbot) -->
+      <a href="https://t.me/nama_bot_anda"
+         target="_blank"
+         class="flex items-center gap-2 bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-600 transition shadow">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6l-.4 3.8c.6 0 .8-.3 1.1-.6l2.6-2.4 5.4 4c1 .5 1.8.2 2-.9l3.4-15.6c.4-1.7-.6-2.4-1.8-2L2.6 9.4c-1.6.6-1.6 1.6-.3 2l4.2 1.3 10.2-6.4c.5-.3 1-.2.6.2"/>
+        </svg>
+        Chatbot Telegram
+      </a>
+    </div>
+  </div>
 </div>
 
+<!-- Include Lottie player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
 <!-- Optional: Notifikasi Suara -->
+ <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <audio id="ping-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3"></audio>
 <script>
   // Play ping sound 2 sec after page load
@@ -412,6 +847,120 @@
       document.getElementById('ping-sound').play();
     }, 2000);
   });
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const text = "Mudah dan Transparan";
+    const typingTarget = document.getElementById("typing-text");
+    const cursor = document.getElementById("cursor");
+
+    let index = 0;
+    let isDeleting = false;
+
+    function loopTyping() {
+      if (isDeleting) {
+        typingTarget.textContent = text.substring(0, index--);
+      } else {
+        typingTarget.textContent = text.substring(0, index++);
+      }
+
+      if (!isDeleting && index === text.length + 1) {
+        // Pause before deleting
+        setTimeout(() => isDeleting = true, 800);
+      } else if (isDeleting && index < 0) {
+        isDeleting = false;
+      }
+
+      const delay = isDeleting ? 50 : 100;
+      setTimeout(loopTyping, delay);
+    }
+
+    loopTyping();
+  });
+
+   const form = document.getElementById('trackingForm');
+const resultsDiv = document.getElementById('searchResults');
+const resultsBody = document.getElementById('resultsBody');
+const spinner = document.getElementById('loadingSpinner');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const nomor = form.trackingNumber.value.trim();
+
+  // Sembunyikan hasil & spinner kalau kosong
+  if (!nomor) {
+    resultsDiv.classList.add('hidden');
+    resultsBody.innerHTML = '';
+    spinner.classList.add('hidden');
+    alert('Masukkan nomor pengajuan terlebih dahulu!');
+    return;
+  }
+
+  // Tampilkan spinner
+  spinner.classList.remove('hidden');
+  resultsDiv.classList.add('hidden'); // Sembunyikan hasil dulu
+  resultsBody.innerHTML = '';
+
+  // Simulasi delay loading, misalnya 1.5 detik
+  setTimeout(() => {
+    // Data simulasi
+    const exampleData = [
+      {
+        nomor: nomor,
+        tanggal: '20 Juni 2025',
+        status: 'Disetujui',
+        keterangan: 'Dana akan cair dalam 3 hari kerja'
+      }
+    ];
+
+    exampleData.forEach(item => {
+      const row = document.createElement('tr');
+      row.classList.add('hover:bg-gray-50');
+      row.innerHTML = `
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.nomor}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.tanggal}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">${item.status}</td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${item.keterangan}</td>
+      `;
+      resultsBody.appendChild(row);
+    });
+
+    // Tampilkan hasil & sembunyikan spinner
+    spinner.classList.add('hidden');
+    resultsDiv.classList.remove('hidden');
+  }, 1500); // waktu delay (ms)
+});
+
+// Sembunyikan hasil saat input kosong
+form.trackingNumber.addEventListener('input', () => {
+  if (form.trackingNumber.value.trim() === '') {
+    resultsDiv.classList.add('hidden');
+    resultsBody.innerHTML = '';
+    spinner.classList.add('hidden');
+  }
+});
+
+ const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+
 </script>
 
 
