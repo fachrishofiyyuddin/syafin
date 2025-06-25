@@ -171,7 +171,7 @@
                 </a>
 
                 <!-- Telegram (Chatbot) -->
-                <a href="https://t.me/https://t.me/HelloSyvaBot" target="_blank"
+                <a href="https://t.me/HelloSyvaBot" target="_blank"
                     class="flex items-center gap-2 bg-blue-500 text-white py-2 px-3 rounded hover:bg-blue-600 transition shadow">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path
