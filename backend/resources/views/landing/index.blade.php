@@ -69,7 +69,7 @@
 
      <section id="education" class="scroll-mt-28 bg-gray-50 py-20 fade-up">
          <div class="container mx-auto px-6 md:px-12 max-w-5xl">
-             <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">Edukasi & FAQ</h2>
+             <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">FAQ</h2>
 
              <!-- FAQ List -->
              <div class="space-y-6 mb-16">
