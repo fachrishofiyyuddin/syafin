@@ -15,9 +15,12 @@ class Pengajuan extends Model
         'nasabah_id',
         'jenis_pengajuan',
         'jumlah_dana',
+        'jatuh_tempo',
+        'deskripsi_pengajuan',
         'status',
-        'keterangan',
+        'status_verifikasi',
         'bukti_ktp',
+        'swafoto_ktp',
     ];
 
     // Relasi ke Nasabah

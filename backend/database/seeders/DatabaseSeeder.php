@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
 
         // buat 10 pengajuan (otomatis relasi nasabah dibuat)
         \App\Models\Pengajuan::factory(10)->create();
+
+        $this->call(BotCommandSeeder::class);
     }
 }

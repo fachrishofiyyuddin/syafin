@@ -19,7 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
+        'email',
+        'telegram_id',
+        'avatar',
         'password',
     ];
 
@@ -44,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function nasabah()
+    {
+        return $this->hasOne(Nasabah::class);
     }
 }

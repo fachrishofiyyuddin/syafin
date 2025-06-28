@@ -29,6 +29,8 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Tambahkan link CSS Swiper di <head> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         :root {
             --primary: #01356a;
@@ -74,6 +76,32 @@
 </head>
 
 <body class="bg-white text-gray-900">
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    confirmButtonColor: '#3085d6'
+                });
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal menyimpan!',
+                    html: `{!! implode('<br>', $errors->all()) !!}`,
+                    confirmButtonColor: '#d33'
+                });
+            });
+        </script>
+    @endif
 
     @include('landing.partials.navbar')
 
@@ -314,7 +342,16 @@
                 },
             },
         });
+
+        document.getElementById('amount').addEventListener('input', function(e) {
+            const maxPlafon = 10000000;
+            if (+e.target.value > maxPlafon) {
+                alert('Jumlah melebihi plafon maksimal Rp10.000.000');
+                e.target.value = maxPlafon;
+            }
+        });
     </script>
+
 
 
 </body>

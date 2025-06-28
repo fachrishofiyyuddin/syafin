@@ -6,7 +6,7 @@
 
          <!-- Background image overlay -->
          <div class="absolute inset-0 z-0">
-             <img src="assets/img/1.jpg" alt="Background" class="w-full h-full object-cover object-center opacity-30" />
+             <img src="assets/img/1.png" alt="Background" class="w-full h-full object-cover object-center opacity-30" />
              <div class="absolute inset-0 bg-[rgba(3,57,113,0.6)]"></div> <!-- overlay warna biru transparan -->
          </div>
 
@@ -69,7 +69,8 @@
 
      <section id="education" class="scroll-mt-28 bg-gray-50 py-20 fade-up">
          <div class="container mx-auto px-6 md:px-12 max-w-5xl">
-             <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">FAQ</h2>
+             <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-16 text-center">Pertanyaan yang sering diajukan
+                 (FAQ)</h2>
 
              <!-- FAQ List -->
              <div class="space-y-6 mb-16">
@@ -127,9 +128,10 @@
                              </svg>
                          </span>
                      </summary>
-                     <p class="mt-3 text-gray-700 leading-relaxed">Anda dapat mengajukan kebutuhan keuangan online
-                         dengan mengisi formulir pengajuan di website atau aplikasi kami, kemudian mengikuti proses
-                         verifikasi dan persetujuan secara digital.</p>
+                     <p class="mt-3 text-gray-700 leading-relaxed">Anda dapat mengajukan kebutuhan keuangan online dengan
+                         terlebih dahulu login menggunakan akun email atau Google. Setelah berhasil login, silakan isi
+                         formulir pengajuan di website atau aplikasi kami, lalu ikuti proses verifikasi dan persetujuan
+                         secara digital</p>
                  </details>
 
                  <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow group">
@@ -145,6 +147,27 @@
                      </summary>
                      <p class="mt-3 text-gray-700 leading-relaxed">Proses pencairan dana biasanya memakan waktu antara 1
                          sampai 3 hari kerja setelah pengajuan disetujui dan dokumen lengkap.</p>
+                 </details>
+
+                 <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow group">
+                     <summary
+                         class="flex items-center justify-between font-semibold text-lg text-[var(--primary)] select-none">
+                         Apa itu plafon kebutuhan keuangan online?
+                         <span class="transition-transform duration-300 group-open:rotate-45 text-[var(--primary)]">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                             </svg>
+                         </span>
+                     </summary>
+                     <p class="mt-3 text-gray-700 leading-relaxed">
+                         Plafon kebutuhan keuangan online adalah batas maksimum dana yang dapat diajukan oleh pengguna
+                         berdasarkan
+                         kriteria tertentu seperti riwayat kredit, penghasilan, dan tujuan pengajuan. Plafon ini ditentukan
+                         oleh
+                         penyedia layanan untuk memastikan kemampuan pembayaran pengguna tetap terjaga dan risiko kredit
+                         dapat diminimalkan.
+                     </p>
                  </details>
 
                  <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-shadow group">
@@ -184,66 +207,61 @@
      </section>
 
      <!-- Form Pengajuan Section -->
-     <section id="form" class="scroll-mt-28 relative py-20 fade-up min-h-[600px]">
+     <section id="form" class="scroll-mt-28 relative py-24 fade-up">
          <!-- Background Image Overlay -->
          <div class="absolute inset-0 z-0">
              <img src="assets/img/bg-loan.jpg" alt="Background Form" class="w-full h-full object-cover object-center" />
-             <div class="absolute inset-0 bg-black/30"></div> <!-- overlay gelap transparan -->
+             <div class="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/60 backdrop-blur-sm"></div>
          </div>
 
+         <!-- Content -->
+         <div class="relative z-10 container mx-auto px-6 md:px-8 max-w-xl">
+             <div
+                 class="bg-white/80 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl p-10 sm:p-12 animate-fade-in-up transition duration-500 ease-in-out">
 
-         <div class="relative z-10 container mx-auto px-6 md:px-12 max-w-3xl">
-             <div class="bg-white rounded-3xl shadow-lg p-12">
-                 <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-12 text-center">Ajukan Sekarang</h2>
-                 <form class="space-y-8">
-                     <div>
-                         <label for="fullName" class="block mb-2 font-semibold text-gray-700">Nama Lengkap</label>
-                         <input id="fullName" type="text" placeholder="Nama lengkap Anda"
-                             class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                             required />
-                     </div>
-                     <div>
-                         <label for="teleForm" class="block mb-2 font-semibold text-gray-700">Nomor Telegram</label>
-                         <input id="teleForm" type="number" placeholder="Nomor Telegram"
-                             class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                             required />
-                     </div>
-                     <div>
-                         <label for="type" class="block mb-2 font-semibold text-gray-700">Jenis Pengajuan</label>
-                         <select id="type"
-                             class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                             required>
-                             <option value="" disabled selected>Pilih jenis pengajuan</option>
-                             <option value="konsumtif">Kebutuhan Konsumtif</option>
-                             <option value="produktif">Kebutuhan Produktif</option>
-                             <option value="darurat">Kebutuhan Darurat</option>
-                         </select>
-                     </div>
-                     <div>
-                         <label for="amount" class="block mb-2 font-semibold text-gray-700">Jumlah Dana (Rp)</label>
-                         <input id="amount" type="number" placeholder="Contoh: 5000000" min="100000"
-                             class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                             required />
-                     </div>
-                     <div>
-                         <label for="ktpUpload" class="block mb-2 font-semibold text-gray-700">Upload KTP</label>
-                         <input id="ktpUpload" type="file" accept=".jpg,.jpeg,.png,.pdf"
-                             class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                             required />
-                     </div>
-                     <button type="submit"
-                         class="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-white rounded-full px-10 py-4 font-semibold hover:opacity-90 transition w-full md:w-auto flex items-center justify-center">
+                 <h2 class="text-4xl sm:text-5xl font-extrabold text-[var(--primary)] text-center mb-8 drop-shadow-sm">
+                     Ajukan Sekarang
+                 </h2>
 
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor" stroke-width="2">
-                             <path stroke-linecap="round" stroke-linejoin="round"
-                                 d="M10 14L21 3M21 3l-6 18-3-7-7-3 18-6z" />
+                 @if (session('success'))
+                     <div class="mb-6 p-4 bg-green-100 text-green-700 rounded-lg text-center shadow-md">
+                         {{ session('success') }}
+                     </div>
+                 @endif
+
+                 <!-- Tombol login -->
+                 <div class="text-center mt-6 space-y-4">
+                     <!-- Login Google -->
+                     <a href="{{ route('google.login') }}"
+                         class="inline-flex items-center justify-center gap-3 px-7 py-4 bg-white border border-gray-200 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out">
+                         <!-- Ikon Google -->
+                         <svg class="w-5 h-5" viewBox="0 0 48 48">
+                             <path fill="#EA4335"
+                                 d="M24 9.5c3.2 0 5.9 1.1 8 3.2l6-6C34.7 2.4 29.7 0 24 0 14.8 0 6.9 5.5 2.8 13.3l7 5.4C12.2 13 17.6 9.5 24 9.5z" />
+                             <path fill="#4285F4"
+                                 d="M46.1 24.5c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.6-2.1 4.9-4.6 6.4l7.2 5.5C43.8 36.4 46.1 30.9 46.1 24.5z" />
+                             <path fill="#FBBC05" d="M10.3 28.6c-1-2.8-1-5.8 0-8.6l-7-5.4c-2.7 5.3-2.7 11.7 0 17l7-5.4z" />
+                             <path fill="#34A853"
+                                 d="M24 48c5.7 0 10.5-1.9 14-5.2l-7.2-5.5c-2 1.4-4.5 2.2-6.8 2.2-6.4 0-11.8-4.4-13.7-10.4l-7 5.4C6.9 42.5 14.8 48 24 48z" />
+                             <path fill="none" d="M0 0h48v48H0z" />
                          </svg>
+                         <span class="text-sm sm:text-base font-semibold text-gray-800">Masuk dengan Google</span>
+                     </a>
 
-                         Kirim Pengajuan
-                     </button>
+                     <!-- Login Telegram -->
+                     <div class="flex justify-center">
+                         <script async src="https://telegram.org/js/telegram-widget.js?7" data-telegram-login="HelloSyvaBot" data-size="large"
+                             data-radius="50" data-userpic="false" data-auth-url="{{ secure_url(route('telegram.auth', [], false)) }}"
+                             data-request-access="write"></script>
 
-                 </form>
+                     </div>
+
+                     <p class="text-xs sm:text-sm text-gray-600 mt-2">Gunakan akun Google atau Telegram untuk login dan
+                         ajukan
+                         kebutuhan keuangan.</p>
+                 </div>
+
+
              </div>
          </div>
      </section>
