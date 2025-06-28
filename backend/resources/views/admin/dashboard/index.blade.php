@@ -327,6 +327,13 @@
                      @enderror
                  </div>
 
+                 <!-- No. REK -->
+                 <div>
+                     <label for="no_rek" class="block text-gray-700 font-medium mb-1">No. Rekening</label>
+                     <input type="text" id="no_rek" name="no_rek" required
+                         class="w-full border rounded px-3 py-2 bg-white-100 text-gray-700" />
+                 </div>
+
                  <!-- Tanggal Jatuh Tempo (otomatis dari hari ini + 6 bulan + 7 hari) -->
                  <div>
                      <label for="jatuh_tempo" class="block text-gray-700 font-medium mb-1">Jatuh Tempo

@@ -149,7 +149,9 @@ class PengajuanController extends Controller
         $batasDenda = $jatuhTempo->copy()->addDays(7);
 
         // 4. Cek apakah sudah lewat dari batas denda
-        $hariIni = now(); // Ganti now() dengan tanggal simulasi jika perlu
+        // $hariIni = now(); // Ganti now() dengan tanggal simulasi jika perlu
+        // Simulasi tanggal di bulan Agustus
+        $hariIni = Carbon::create(2026, 2, 20); // 15 Agustus 2025
         $kenaDenda = $hariIni->greaterThan($batasDenda);
 
         // 5. Hitung nilai denda jika terlambat
