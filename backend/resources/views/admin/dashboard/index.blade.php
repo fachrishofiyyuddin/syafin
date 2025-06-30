@@ -92,7 +92,6 @@
                      <tr>
                          <th class="py-3 px-4 text-left">#</th>
                          <th class="py-3 px-4 text-left">Nama</th>
-                         <th class="py-3 px-4 text-left">Bank</th>
                          <th class="py-3 px-4 text-left">No. Rekening</th>
                          <th class="py-3 px-4 text-left">Tanggal</th>
                          <th class="py-3 px-4 text-left">Jenis</th>
@@ -107,7 +106,6 @@
                          <tr>
                              <td class="px-4 py-3">{{ $index + 1 }}</td>
                              <td class="px-4 py-3">{{ $item->nasabah->nama_lengkap }}</td>
-                             <td class="px-4 py-3">{{ $item->bank }}</td>
                              <td class="px-4 py-3">{{ $item->no_rek }}</td>
                              <td class="px-4 py-3">
                                  {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
@@ -333,7 +331,7 @@
                  </div>
 
                  <div>
-                     <label for="bank" class="block text-gray-700 font-medium mb-1">Jenis Pengajuan</label>
+                     <label for="bank" class="block text-gray-700 font-medium mb-1">Pilih Bank</label>
                      <select id="bank" name="bank" required
                          class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-primary @error('jenis_pengajuan') border-red-500 @enderror">
                          <option value="" disabled {{ old('bank') ? '' : 'selected' }}>Pilih

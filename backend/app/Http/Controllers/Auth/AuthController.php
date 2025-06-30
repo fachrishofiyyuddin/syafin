@@ -21,17 +21,17 @@ class AuthController extends Controller
         }
 
         $username = $data['username'] ?? ('user' . $data['id']);
-        // $email = $username . '@telegram.local';
+        $email = $username . '@telegram.local';
 
         // Cek jika user sudah ada berdasarkan telegram_id atau email
-        $user = User::where('telegram_id', $data['id'])->first();
+        $user = User::where('telegram_id', $data['id'])->orWhere('email',$email)->first();
 
         if (!$user) {
             // Simpan ke users jika belum ada
             $user = User::create([
                 'telegram_id' => $data['id'],
                 'name' => $data['first_name'] ?? 'User Telegram',
-                // 'email' => $email,
+                'email' => $email,
                 'password' => bcrypt(Str::random(16)),
                 'avatar' => $data['photo_url'] ?? null,
                 'role' => 'nasabah',

@@ -303,7 +303,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.nomor}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.tanggal}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">${item.status}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${item.keterangan}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">${item.status_verifikasi}</td>
                     `;
                         resultsBody.appendChild(row);
                         resultsDiv.classList.remove('hidden');
