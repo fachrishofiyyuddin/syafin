@@ -3,7 +3,6 @@
  @section('content')
      <section
          class="relative bg-gradient-to-b from-[var(--primary)] to-[var(--primary-light)] text-white text-center overflow-hidden min-h-screen">
-
          <!-- Background image overlay -->
          <div class="absolute inset-0 z-0">
              <img src="assets/img/1.png" alt="Background" class="w-full h-full object-cover object-center opacity-30" />
@@ -14,7 +13,7 @@
              class="relative z-10 w-full max-w-screen-lg mx-auto px-4 sm:px-6 md:px-8 min-h-screen flex flex-col justify-center items-center space-y-8">
 
              <h1
-                 class="text-4xl sm:text-5xl md:text-6xl font-extralight leading-tight tracking-tight drop-shadow-lg text-center">
+                 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight leading-tight tracking-tight drop-shadow-lg text-center">
                  Keuangan Syariah<br />
                  <span class="font-semibold block">
                      <span id="typing-text" class="block sm:inline whitespace-normal sm:whitespace-nowrap">
@@ -24,9 +23,8 @@
                  </span>
              </h1>
 
-
              <p
-                 class="text-xl font-semibold uppercase tracking-wide text-white/90 flex justify-center items-center gap-3 flex-wrap">
+                 class="text-lg sm:text-xl md:text-2xl font-semibold uppercase tracking-wide text-white/90 flex justify-center items-center gap-3 flex-wrap">
                  Solusi
                  <span
                      class="bg-yellow-400 text-black px-4 py-1 rounded-md shadow-lg font-bold inline-flex items-center gap-2 animate-pulse">
@@ -35,7 +33,7 @@
                  Mudah & Cepat
              </p>
 
-             <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-95 drop-shadow-md">
+             <p class="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-95 drop-shadow-md">
                  Ajukan kebutuhan keuangan secara <span class="font-semibold underline decoration-yellow-400">online</span>,
                  tanpa ribet dan proses cepat.
                  Pantau status pengajuan secara real-time, konsultasi kapan saja dengan tim kami.
@@ -43,10 +41,10 @@
 
              <a href="#form"
                  class="group relative inline-flex items-center gap-2 px-8 py-3 bg-white text-[var(--primary)] font-semibold rounded-full
-          shadow-md overflow-hidden
-          transition-all duration-500 ease-in-out
-          hover:text-black
-          active:scale-95 active:shadow-inner">
+            shadow-md overflow-hidden
+            transition-all duration-500 ease-in-out
+            hover:text-black
+            active:scale-95 active:shadow-inner">
                  <!-- Background fill efek -->
                  <span
                      class="absolute inset-0 bg-yellow-400 scale-x-0 origin-left transition-transform duration-500 ease-in-out group-hover:scale-x-100 rounded-full z-0"></span>
@@ -61,11 +59,9 @@
                  <!-- Teks -->
                  <span class="relative z-10 text-base">Ajukan Sekarang</span>
              </a>
-
-
-
          </div>
      </section>
+
 
      <section id="education" class="scroll-mt-28 bg-gray-50 py-20 fade-up">
          <div class="container mx-auto px-6 md:px-12 max-w-5xl">
@@ -232,7 +228,7 @@
                  <!-- Tombol login -->
                  <div class="text-center mt-6 space-y-4">
                      <!-- Login Google -->
-                     <a href="{{ route('google.login') }}"
+                     <a href="{{ secure_url(route('google.login', [], false)) }}"
                          class="inline-flex items-center justify-center gap-3 px-7 py-4 bg-white border border-gray-200 rounded-full shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out">
                          <!-- Ikon Google -->
                          <svg class="w-5 h-5" viewBox="0 0 48 48">

@@ -18,5 +18,18 @@ class DatabaseSeeder extends Seeder
         \App\Models\Pengajuan::factory(10)->create();
 
         $this->call(BotCommandSeeder::class);
+
+        $this->call([
+            GoogleAuthSettingSeeder::class,
+        ]);
+
+        $this->call([
+            MidtransSettingSeeder::class,
+        ]);
+
+
+        $this->call([
+            TelegramSettingSeeder::class,
+        ]);
     }
 }

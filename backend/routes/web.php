@@ -10,7 +10,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\WhatsappLoginController;
 use App\Http\Controllers\BotCommandController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GoogleAuthSettingController;
+use App\Http\Controllers\MidtransSettingController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\TelegramSettingController;
 use App\Models\Nasabah;
 use App\Models\User;
 
@@ -75,6 +79,7 @@ Route::post('/logout', function (Request $request) {
 
 // ✅ Route yang wajib login
 Route::middleware('auth')->group(function () {
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
     Route::get('/dashboards', [DashboardController::class, 'index'])->name('dashboards');
     Route::post('/submit', [PengajuanController::class, 'store'])->name('submit.store');
     Route::put('/pengajuan/{id}/verifikasi', [PengajuanController::class, 'verifikasi'])->name('pengajuan.verifikasi');
@@ -90,4 +95,14 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/bot/commands/{id}/edit', [BotCommandController::class, 'edit'])->name('bot.commands.edit');
     Route::put('admin/bot/commands/{id}', [BotCommandController::class, 'update'])->name('bot.commands.update');
     Route::delete('admin/bot/commands/{id}', [BotCommandController::class, 'destroy'])->name('bot.commands.destroy');
+    // routes/web.php
+    Route::get('/admin/google-auth', [GoogleAuthSettingController::class, 'index'])->name('admin.google-auth.index');
+    Route::post('/admin/google-auth', [GoogleAuthSettingController::class, 'update'])->name('admin.google-auth.update');
+    Route::get('/admin/google-auth/test', [GoogleAuthSettingController::class, 'test'])->name('admin.google-auth.test');
+    Route::get('/admin/telegram-setting', [TelegramSettingController::class, 'index'])->name('admin.telegram.index');
+    Route::post('/admin/telegram-setting', [TelegramSettingController::class, 'update'])->name('admin.telegram.update');
+    Route::get('/admin/midtrans', [MidtransSettingController::class, 'index'])->name('admin.midtrans.index');
+    Route::post('/admin/midtrans', [MidtransSettingController::class, 'update'])->name('admin.midtrans.update');
+    Route::post('/admin/midtrans/test', [MidtransSettingController::class, 'testConnection'])->name('admin.midtrans.test');
+    // Route::get('/midtrans/test', [MidtransSettingController::class, 'test']);
 });

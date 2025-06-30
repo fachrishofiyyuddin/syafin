@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Pengajuan;
 use App\Models\Nasabah;
 use App\Models\Pembayaran;
+use App\Models\TelegramSetting;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Midtrans\Snap;
 use Midtrans\Config;
+use App\Mail\NotifikasiPengajuanMail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class PengajuanController extends Controller
@@ -42,6 +46,8 @@ class PengajuanController extends Controller
         try {
             $request->validate([
                 'jenis_pengajuan' => 'required|in:konsumtif,produktif,darurat',
+                'no_rek' => 'required|numeric',
+                'bank' => 'required',
                 'jumlah_dana' => 'required|numeric|min:500000|max:10000000',
                 'deskripsi_penggunaan' => 'required|string',
                 'bukti_ktp' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
@@ -49,6 +55,12 @@ class PengajuanController extends Controller
             ], [
                 'jenis_pengajuan.required' => 'Jenis pengajuan wajib dipilih.',
                 'jenis_pengajuan.in' => 'Jenis pengajuan tidak valid.',
+
+
+                'no_rek.required' => 'Nomor Rekening wajib diisi.',
+                'no_rek.numeric' => 'Nomor Rekening harus berupa angka.',
+
+                'bank.required' => 'Bank wajib diisi.',
 
                 'jumlah_dana.required' => 'Jumlah dana wajib diisi.',
                 'jumlah_dana.numeric' => 'Jumlah dana harus berupa angka.',
@@ -77,9 +89,11 @@ class PengajuanController extends Controller
             // Hitung jatuh tempo: hari ini + 6 bulan + 7 hari
             $jatuhTempo = Carbon::now()->addMonths(6)->addDays(7);
 
-            Pengajuan::create([
+            $pengajuan = Pengajuan::create([
                 'nasabah_id' => $user->nasabah->id,
                 'jenis_pengajuan' => $request->jenis_pengajuan,
+                'bank' => $request->bank,
+                'no_rek' => $request->no_rek,
                 'jumlah_dana' => $request->jumlah_dana,
                 'status' => 'pending',
                 'status_verifikasi' => 'belum diverifikasi',
@@ -88,6 +102,29 @@ class PengajuanController extends Controller
                 'swafoto_ktp' => $swafotoPath,
                 'jatuh_tempo' => $jatuhTempo,
             ]);
+
+            // --- Kirim Notifikasi ---
+            $email = $user->email;
+            $telegramId = $user->telegram_id;
+            $nomorPengajuan = $pengajuan->id;
+
+            // Ambil bot token dari DB
+            $token = TelegramSetting::first()?->bot_token;
+
+
+            if ($email) {
+                Mail::to($email)->send(new NotifikasiPengajuanMail($nomorPengajuan));
+            } elseif ($telegramId && $token) {
+                $text = "*📢 Pengajuan Berhasil!*\n\n" .
+                    "🧾 *Nomor Pengajuan:* `$nomorPengajuan`\n\n" .
+                    "✅ Terima kasih telah menggunakan *Syafin App*. Kami akan segera memverifikasi pengajuanmu.";
+
+                Http::get("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $telegramId,
+                    'text' => $text,
+                    'parse_mode' => 'Markdown'
+                ]);
+            }
 
             return redirect()->back()->with('success', 'Pengajuan berhasil dikirim.');
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -149,9 +186,9 @@ class PengajuanController extends Controller
         $batasDenda = $jatuhTempo->copy()->addDays(7);
 
         // 4. Cek apakah sudah lewat dari batas denda
-        // $hariIni = now(); // Ganti now() dengan tanggal simulasi jika perlu
+        $hariIni = now(); // Ganti now() dengan tanggal simulasi jika perlu
         // Simulasi tanggal di bulan Agustus
-        $hariIni = Carbon::create(2026, 2, 20); // 15 Agustus 2025
+        // $hariIni = Carbon::create(2026, 2, 20); // 15 Agustus 2025
         $kenaDenda = $hariIni->greaterThan($batasDenda);
 
         // 5. Hitung nilai denda jika terlambat
@@ -209,55 +246,6 @@ class PengajuanController extends Controller
             'batasDenda'
         ));
     }
-
-    // public function bayar(Request $request)
-    // {
-    //     $user = $request->user();
-    //     $pengajuanId = $request->pengajuan_id;
-    //     $bulan = $request->bulan; // array bulan format 'YYYY-MM'
-    //     $total = $request->total;
-
-    //     // Cek apakah sudah ada pembayaran pending untuk bulan-bulan tersebut
-    //     $pembayaran = Pembayaran::where('pengajuan_id', $pengajuanId)
-    //         ->whereIn('bulan', $bulan)
-    //         ->where('status', 'pending')
-    //         ->first();
-
-    //     if ($pembayaran) {
-    //         // Jika sudah ada pending, pakai snap_token yang lama
-    //         return response()->json(['token' => $pembayaran->snap_token]);
-    //     }
-
-    //     // Jika belum ada, buat pembayaran baru
-    //     $orderId = 'ORDER-' . uniqid() . '-' . time();
-
-    //     $params = [
-    //         'transaction_details' => [
-    //             'order_id' => $orderId,
-    //             'gross_amount' => (int) $total,
-    //         ],
-    //         'customer_details' => [
-    //             'first_name' => auth()->$user->name ?? 'User',
-    //             'email' => auth()->$user->email ?? 'user@mail.com',
-    //         ],
-    //     ];
-
-    //     $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-    //     // Simpan pembayaran untuk tiap bulan (misalnya bulan = ['2025-06', '2025-07'])
-    //     foreach ($bulan as $bln) {
-    //         Pembayaran::create([
-    //             'pengajuan_id' => $pengajuanId,
-    //             'order_id' => $orderId,
-    //             'bulan' => $bln,
-    //             'nominal' => floor($total / count($bulan)), // optional: bagi rata
-    //             'status' => 'pending',
-    //             'snap_token' => $snapToken,
-    //         ]);
-    //     }
-
-    //     return response()->json(['token' => $snapToken]);
-    // }
 
     public function bayar(Request $request)
     {

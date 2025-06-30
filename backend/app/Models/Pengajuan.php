@@ -13,6 +13,8 @@ class Pengajuan extends Model
 
     protected $fillable = [
         'nasabah_id',
+        'no_rek',
+        'bank',
         'jenis_pengajuan',
         'jumlah_dana',
         'jatuh_tempo',

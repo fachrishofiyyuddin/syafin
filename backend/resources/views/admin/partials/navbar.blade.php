@@ -7,10 +7,14 @@
                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
              </svg>
          </button>
-         <h1 class="text-base md:text-xl font-semibold">Dashboard Nasabah</h1>
+
+         <!-- Judul Berdasarkan Role -->
+         <h1 class="text-base md:text-xl font-semibold">
+             {{ auth()->user()->role === 'admin' ? 'Dashboard Admin' : 'Dashboard Nasabah' }}
+         </h1>
      </div>
      <div x-data="{ open: false }" class="relative inline-flex items-center gap-2 cursor-pointer select-none">
-         <img src="{{ Auth::user()->avatar ?? '/default-avatar.png' }}" alt="Avatar"
+         <img src="{{ Auth::user()->avatar ? Auth::user()->avatar : asset('assets/img/profile.png') }}" alt="Avatar"
              class="w-8 h-8 rounded-full object-cover" @click="open = !open" />
 
          <!-- Nama user -->
@@ -28,8 +32,7 @@
              x-transition:leave-end="opacity-0 transform scale-95"
              class="absolute right-0 top-full mt-1 w-40 rounded shadow-lg z-50 text-white bg-[#0c4a8f] border border-[#07437a] overflow-hidden"
              style="display: none;">
-             <a href="#" class="block px-4 py-2 hover:bg-[#1351b4] transition rounded">Profil</a>
-             <a href="#" class="block px-4 py-2 hover:bg-[#1351b4] transition rounded">Pengaturan</a>
+             <a href="{{ route('profil') }}" class="block px-4 py-2 hover:bg-[#1351b4] transition rounded">Profil</a>
              <form method="POST" action="{{ secure_url(route('logout', [], false)) }}">
                  @csrf
                  <button type="submit"

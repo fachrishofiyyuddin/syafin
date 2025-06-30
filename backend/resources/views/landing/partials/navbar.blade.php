@@ -41,7 +41,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5.121 17.804A11.95 11.95 0 0112 15c2.21 0 4.269.636 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    Login
+                    Login Admin
                 </a>
             </li>
             <li>

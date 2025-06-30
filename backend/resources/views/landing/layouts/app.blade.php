@@ -268,7 +268,7 @@
             const spinner = document.getElementById('loadingSpinner');
             const wrapper = document.getElementById('trackingWrapper');
 
-            form.addEventListener('submit', e => {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const nomor = inputField.value.trim();
 
@@ -278,37 +278,51 @@
                     resultsDiv.classList.add('hidden');
                     resultsBody.innerHTML = '';
                     alert('Masukkan nomor pengajuan terlebih dahulu!');
-                    return; // ⛔ STOP di sini
+                    return;
                 }
 
+                // Tampilkan wrapper & loading spinner
                 wrapper?.classList.remove('hidden');
                 spinner.classList.remove('hidden');
                 resultsDiv.classList.add('hidden');
                 resultsBody.innerHTML = '';
 
-                setTimeout(() => {
-                    const exampleData = [{
-                        nomor: nomor,
-                        tanggal: '20 Juni 2025',
-                        status: 'Disetujui',
-                        keterangan: 'Dana akan cair dalam 3 hari kerja'
-                    }];
+                try {
+                    const response = await fetch(`{{ secure_url('api/tracking') }}/${nomor}`);
+                    const data = await response.json();
 
-                    exampleData.forEach(item => {
+                    spinner.classList.add('hidden');
+                    resultsBody.innerHTML = '';
+
+                    if (response.ok && data.success) {
+                        const item = data.pengajuan;
+
                         const row = document.createElement('tr');
                         row.classList.add('hover:bg-gray-50');
                         row.innerHTML = `
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.nomor}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.tanggal}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">${item.status}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${item.keterangan}</td>
-        `;
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.nomor}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.tanggal}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">${item.status}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${item.keterangan}</td>
+                    `;
                         resultsBody.appendChild(row);
-                    });
+                        resultsDiv.classList.remove('hidden');
+                    } else {
+                        resultsBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" class="px-6 py-4 text-red-500 text-center">${data.message || 'Data tidak ditemukan.'}</td>
+                        </tr>`;
+                        resultsDiv.classList.remove('hidden');
+                    }
 
+                } catch (error) {
                     spinner.classList.add('hidden');
+                    resultsBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-red-500 text-center">Gagal memuat data. Silakan coba lagi nanti.</td>
+                    </tr>`;
                     resultsDiv.classList.remove('hidden');
-                }, 1500);
+                }
             });
 
             inputField.addEventListener('input', () => {

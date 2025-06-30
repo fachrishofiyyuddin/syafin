@@ -2,36 +2,39 @@
 
  @section('content')
      <!-- Cards -->
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
-         <!-- Jam Digital -->
-         <div
-             class="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center justify-center cursor-pointer hover:shadow-xl transition">
-             <!-- Ikon Jam -->
-             <span class="material-icons text-primary text-6xl mb-4">access_time</span>
-
-             <!-- Deskripsi -->
-             <p class="text-sm text-gray-500 mb-5 max-w-xs">
-                 Lihat waktu terkini yang terus diperbarui secara real-time. Pastikan Anda tidak ketinggalan waktu!
-             </p>
-
+     <!-- Ajukan Kebutuhan Keuangan (Hanya untuk Nasabah) -->
+     @if (auth()->user()->role === 'nasabah')
+         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
              <!-- Jam Digital -->
-             <div id="clock" class="text-4xl font-bold text-gray-800"></div>
-         </div>
+             <div
+                 class="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center justify-center cursor-pointer hover:shadow-xl transition">
+                 <!-- Ikon Jam -->
+                 <span class="material-icons text-primary text-6xl mb-4">access_time</span>
 
-         <!-- Ajukan Kebutuhan Keuangan -->
-         <div class="bg-white rounded shadow p-6 text-center flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition"
-             @click="modalOpen = true">
-             <span class="material-icons text-primary text-5xl mb-3">attach_money</span>
-             <h2 class="text-lg font-semibold mb-1 text-primary">Ajukan Kebutuhan Keuangan</h2>
-             <p class="text-gray-600 text-sm mb-3 max-w-xs">Dapatkan bantuan dana sesuai kebutuhan Anda dengan proses mudah
-                 dan cepat.</p>
-             <button
-                 class="mt-auto bg-primary text-white px-5 py-2 rounded hover:bg-primary-light transition flex items-center justify-center gap-2">
-                 <span class="material-icons">add</span>
-                 Ajukan Sekarang
-             </button>
+                 <!-- Deskripsi -->
+                 <p class="text-sm text-gray-500 mb-5 max-w-xs">
+                     Lihat waktu terkini yang terus diperbarui secara real-time. Pastikan Anda tidak ketinggalan waktu!
+                 </p>
+
+                 <!-- Jam Digital -->
+                 <div id="clock" class="text-4xl font-bold text-gray-800"></div>
+             </div>
+
+             <div class="bg-white rounded shadow p-6 text-center flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition"
+                 @click="modalOpen = true">
+                 <span class="material-icons text-primary text-5xl mb-3">attach_money</span>
+                 <h2 class="text-lg font-semibold mb-1 text-primary">Ajukan Kebutuhan Keuangan</h2>
+                 <p class="text-gray-600 text-sm mb-3 max-w-xs">Dapatkan bantuan dana sesuai kebutuhan Anda dengan proses
+                     mudah
+                     dan cepat.</p>
+                 <button
+                     class="mt-auto bg-primary text-white px-5 py-2 rounded hover:bg-primary-light transition flex items-center justify-center gap-2">
+                     <span class="material-icons">add</span>
+                     Ajukan Sekarang
+                 </button>
+             </div>
          </div>
-     </div>
+     @endif
 
      <!-- Tabel Pengajuan -->
      <section x-data="pagination()" class="bg-white rounded shadow mt-8">
@@ -89,7 +92,8 @@
                      <tr>
                          <th class="py-3 px-4 text-left">#</th>
                          <th class="py-3 px-4 text-left">Nama</th>
-                         <th class="py-3 px-4 text-left">No. Telegram</th>
+                         <th class="py-3 px-4 text-left">Bank</th>
+                         <th class="py-3 px-4 text-left">No. Rekening</th>
                          <th class="py-3 px-4 text-left">Tanggal</th>
                          <th class="py-3 px-4 text-left">Jenis</th>
                          <th class="py-3 px-4 text-left">Jumlah</th>
@@ -103,7 +107,8 @@
                          <tr>
                              <td class="px-4 py-3">{{ $index + 1 }}</td>
                              <td class="px-4 py-3">{{ $item->nasabah->nama_lengkap }}</td>
-                             <td class="px-4 py-3">{{ $item->nasabah->nomor_telegram }}</td>
+                             <td class="px-4 py-3">{{ $item->bank }}</td>
+                             <td class="px-4 py-3">{{ $item->no_rek }}</td>
                              <td class="px-4 py-3">
                                  {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
                              </td>
@@ -327,11 +332,30 @@
                      @enderror
                  </div>
 
+                 <div>
+                     <label for="bank" class="block text-gray-700 font-medium mb-1">Jenis Pengajuan</label>
+                     <select id="bank" name="bank" required
+                         class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-primary @error('jenis_pengajuan') border-red-500 @enderror">
+                         <option value="" disabled {{ old('bank') ? '' : 'selected' }}>Pilih
+                             bank</option>
+                         <option value="bank_jateng_syariah"
+                             {{ old('jenis_pengajuan') == 'bank_jateng_syariah' ? 'selected' : '' }}>
+                             Bank Jateng Syariah</option>
+                     </select>
+                     @error('bank')
+                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                     @enderror
+                 </div>
+
                  <!-- No. REK -->
                  <div>
                      <label for="no_rek" class="block text-gray-700 font-medium mb-1">No. Rekening</label>
                      <input type="text" id="no_rek" name="no_rek" required
-                         class="w-full border rounded px-3 py-2 bg-white-100 text-gray-700" />
+                         class="w-full border rounded px-3 py-2 bg-white-100 text-gray-700"
+                         placeholder="Contoh: 39847339" />
+                     @error('no_rek')
+                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                     @enderror
                  </div>
 
                  <!-- Tanggal Jatuh Tempo (otomatis dari hari ini + 6 bulan + 7 hari) -->

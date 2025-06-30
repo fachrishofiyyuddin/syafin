@@ -11,6 +11,8 @@ class CreatePengajuansTable extends Migration
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('nasabah_id')->constrained('nasabahs')->onDelete('cascade'); // relasi ke nasabah
+            $table->string('no_rek')->nullable(); // konsumtif, produktif, darurat
+            $table->string('bank')->nullable(); // konsumtif, produktif, darurat
             $table->string('jenis_pengajuan'); // konsumtif, produktif, darurat
             $table->bigInteger('jumlah_dana'); // dana dalam rupiah
             $table->date('jatuh_tempo')->nullable();
