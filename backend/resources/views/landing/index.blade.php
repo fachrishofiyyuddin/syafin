@@ -186,14 +186,14 @@
              <!-- Videos Section -->
              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                  <div class="w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200">
-                     <iframe src="https://www.youtube.com/embed/VbdEZMSQXcQ?si=8VHJQjdvcIsgZhBs"
+                     <iframe src="https://www.youtube.com/embed/tYZIU1UAMaM?si=C8vNic_dtFc9QHKm"
                          title="Video Edukasi Kebutuhan Keuangan Online 1" frameborder="0"
                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                          allowfullscreen class="w-full h-full"></iframe>
                  </div>
 
                  <div class="w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200">
-                     <iframe src="https://www.youtube.com/embed/VbdEZMSQXcQ?si=8VHJQjdvcIsgZhBs"
+                     <iframe src="https://www.youtube.com/embed/tYZIU1UAMaM?si=C8vNic_dtFc9QHKm"
                          title="Video Edukasi Kebutuhan Keuangan Online 2" frameborder="0"
                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                          allowfullscreen class="w-full h-full"></iframe>
