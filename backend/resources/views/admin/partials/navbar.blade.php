@@ -1,5 +1,5 @@
  <header
-     class="fixed top-0 left-0 right-0 z-30 bg-primary text-white p-4 shadow flex items-center justify-between md:ml-64">
+  class="fixed top-0 left-0 right-0 z-30 bg-primary text-white p-4 shadow flex items-center justify-between">
      <div class="flex items-center gap-3">
          <!-- Hamburger -->
          <button @click="sidebarOpen = true" class="md:hidden focus:outline-none">
@@ -9,9 +9,9 @@
          </button>
 
          <!-- Judul Berdasarkan Role -->
-         <h1 class="text-base md:text-xl font-semibold">
+         <!-- <h1 class="text-base md:text-xl font-semibold">
              {{ auth()->user()->role === 'admin' ? 'Dashboard Admin' : 'Dashboard Nasabah' }}
-         </h1>
+         </h1> -->
      </div>
      <div x-data="{ open: false }" class="relative inline-flex items-center gap-2 cursor-pointer select-none">
          <img src="{{ Auth::user()->avatar ? Auth::user()->avatar : asset('assets/img/profile.png') }}" alt="Avatar"

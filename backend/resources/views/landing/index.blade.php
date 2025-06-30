@@ -2,7 +2,7 @@
 
  @section('content')
      <section
-         class="relative bg-gradient-to-b from-[var(--primary)] to-[var(--primary-light)] text-white text-center overflow-hidden min-h-screen">
+         class="relative pt-20 bg-gradient-to-b from-[var(--primary)] to-[var(--primary-light)] text-white text-center overflow-hidden min-h-screen">
          <!-- Background image overlay -->
          <div class="absolute inset-0 z-0">
              <img src="assets/img/1.png" alt="Background" class="w-full h-full object-cover object-center opacity-30" />
@@ -360,7 +360,7 @@
                                      <th class="px-6 py-4 font-semibold uppercase tracking-wide">Nomor</th>
                                      <th class="px-6 py-4 font-semibold uppercase tracking-wide">Tanggal</th>
                                      <th class="px-6 py-4 font-semibold uppercase tracking-wide">Status</th>
-                                     <th class="px-6 py-4 font-semibold uppercase tracking-wide">Keterangan</th>
+                                     <th class="px-6 py-4 font-semibold uppercase tracking-wide">Status Verifikasi</th>
                                  </tr>
                              </thead>
                              <tbody id="resultsBody" class="divide-y divide-gray-200">

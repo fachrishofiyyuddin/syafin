@@ -26,7 +26,7 @@ Route::get('/tracking/{id}', function ($id) {
             'nomor' => $pengajuan->id,
             'tanggal' => $pengajuan->created_at->format('d M Y'),
             'status' => ucfirst($pengajuan->status),
-            'keterangan' => $pengajuan->deskripsi_penggunaan,
+            'status_verifikasi' => $pengajuan->status_verifikasi,
         ]
     ]);
 });

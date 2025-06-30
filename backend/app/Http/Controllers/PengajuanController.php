@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class PengajuanController extends Controller
 {
@@ -112,9 +114,8 @@ class PengajuanController extends Controller
             $token = TelegramSetting::first()?->bot_token;
 
 
-            if ($email) {
-                Mail::to($email)->send(new NotifikasiPengajuanMail($nomorPengajuan));
-            } elseif ($telegramId && $token) {
+            if (Str::contains($email, '@telegram.local') && $telegramId && $token) {
+                // Kirim via Telegram
                 $text = "*📢 Pengajuan Berhasil!*\n\n" .
                     "🧾 *Nomor Pengajuan:* `$nomorPengajuan`\n\n" .
                     "✅ Terima kasih telah menggunakan *Syafin App*. Kami akan segera memverifikasi pengajuanmu.";
@@ -124,7 +125,11 @@ class PengajuanController extends Controller
                     'text' => $text,
                     'parse_mode' => 'Markdown'
                 ]);
+            } elseif ($email) {
+                // Kirim via Email
+                Mail::to($email)->send(new NotifikasiPengajuanMail($nomorPengajuan));
             }
+
 
             return redirect()->back()->with('success', 'Pengajuan berhasil dikirim.');
         } catch (\Illuminate\Validation\ValidationException $e) {
