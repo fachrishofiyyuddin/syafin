@@ -24,7 +24,7 @@ class AuthController extends Controller
         // $email = $username . '@telegram.local';
 
         // Cek jika user sudah ada berdasarkan telegram_id atau email
-        $user = User::where('telegram_id', $data['id'])->first();
+        $user = User::where('telegram_id', $data['id'])->orWhere('email', $email)->first();
 
         if (!$user) {
             // Simpan ke users jika belum ada
